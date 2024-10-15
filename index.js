@@ -12,6 +12,7 @@ app.get('/', async (req, res) => {
 
 app.get('/tti', async (req, res) => {
     const { prompt } = req.query
+    if(!prompt) return res.json({status: 500, creator: 'ItsBayy', message: "missing prompt!"})
     const response = await tti.textToImage(prompt)
     res.json({status: 200, creator: 'ItsBayy', imageUrl: response.url.result_url})
 })
